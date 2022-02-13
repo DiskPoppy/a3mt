@@ -1,0 +1,29 @@
+#amk 2
+
+#instruments
+{
+@18 $85 $25 $00 $03 $00 ;@30
+}
+
+"c~=$EE$00 c"
+"d+m~=$EE$BA d"
+"f~=$EE$E9 e"
+"fp~=$EE$74 f"
+"g~=$EE$8C f+"
+"g+~=$EE$2F g+"
+"am~=$EE$BA g+"
+"b-~=$EE$D1 a"
+
+t40
+
+#0 @2 o2
+[fp~8 g~8 am~8 b-~8 r2 r1]4
+
+#1 @13 o4 v255
+r1^1^1^1 fp~8 g~8 am~8 b-~8 am~2 v160 g+2 v255 r2 r1^1
+
+#2 @30 o1
+[v200 fp~4 v100 f4 > v200 c~4 v100 c4 v200 f~4 v100 e4 r2 <]2 [v200 g+~4 v100 g+4 > v200 d+m~4 v100 d4 v200 f~4 v100 e4 r2 <]2
+
+#3 @3 o2
+am~2 r2 r1 am~2 r2 r1 > d+m~2 r2 r1 d+m~2 r2 r1 <
