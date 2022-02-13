@@ -6,7 +6,7 @@
 -- collaborator may have installed at a different location, as in this example
 -- (see config_user.txt for the rest of the example configuration)
 
- -- rom paths
+-- rom paths
 clean = SMW_clean.smc
 output = my_hack.smc
 temp = temp.smc
