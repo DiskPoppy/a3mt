@@ -13,8 +13,8 @@ temp = temp.smc
 package = my_hack.bps
 
 -- tools
-asar_path = patch\asar.exe
-lm_path = lm331\Lunar Magic.exe
+asar_path = patch/asar.exe
+lm_path = lm331/Lunar Magic.exe
 
 -- if defined, the initial patch will be applied before any other steps
 -- It's good idea to open your clean ROM in Lunar Magic, save it to another location, and create a patch
@@ -51,15 +51,12 @@ patches
 ]
 
 -- tools
-gps_path = block\gps.exe
-pixi_path = sprite\pixi.exe
-addmusick_path = music\AddMusicK.exe
-uberasm_path = uberasm\UberASMTool.exe
+pixi_path = sprite/pixi.exe
 
 -- content
 levels = Levels
-shared_palette = resource\shared.pal
-map16 = resource\all.map16
+shared_palette = resource/shared.pal
+map16 = resource/all.map16
 
 -- global_data is a BPS patch file, to be created by Lunar Helper, 
 -- that will hold the overworld, ex global animations, credits, intro screen, and title moves.

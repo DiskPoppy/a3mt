@@ -188,7 +188,7 @@ namespace SMWPatcher
                 var rom = Path.GetRelativePath(dir, Path.GetFullPath(Config.TempPath));
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.GPSPath, $"-l \"{dir}/list.txt\" \"{rom}\"");
+                ProcessStartInfo psi = Spawn(Config.GPSPath, $"-l \"{dir}/list.txt\" \"{rom}\"");
                 psi.RedirectStandardInput = true;
                 psi.WorkingDirectory = dir;
 
@@ -214,16 +214,15 @@ namespace SMWPatcher
                 Log("Pixi not found at provided path, no sprites will be inserted.", ConsoleColor.Red);
             else
             {
-                var dir = Path.GetFullPath(Path.GetDirectoryName(Config.PixiPath));
+                var dir = Path.GetDirectoryName(Config.PixiPath);
                 var list = Path.Combine(dir, "list.txt");
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.PixiPath, $"-l \"{list}\" \"{Config.TempPath}\"");
+                ProcessStartInfo psi = Spawn(Config.PixiPath, $"-l {list} \"{Config.TempPath}\"");
                 psi.RedirectStandardInput = true;
 
                 var p = Process.Start(psi);
-                while (!p.HasExited)
-                    p.StandardInput.Write('a');
+                p.WaitForExit();
 
                 if (p.ExitCode == 0)
                     Log("Pixi Success!", ConsoleColor.Green);
@@ -250,7 +249,7 @@ namespace SMWPatcher
                 {
                     Lognl($"- Applying patch '{patch}'...  ", ConsoleColor.Yellow);
 
-                    ProcessStartInfo psi = new ProcessStartInfo(Config.AsarPath, $"\"{patch}\" \"{Config.TempPath}\"");
+                    ProcessStartInfo psi = Spawn(Config.AsarPath, $"\"{patch}\" \"{Config.TempPath}\"");
 
                     var p = Process.Start(psi);
                     p.WaitForExit();
@@ -288,7 +287,7 @@ namespace SMWPatcher
                 var rom = Path.GetRelativePath(dir, Path.GetFullPath(Config.TempPath));
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.UberASMPath, $"list.txt \"{rom}\"");
+                ProcessStartInfo psi = Spawn(Config.UberASMPath, $"list.txt \"{rom}\"");
                 psi.RedirectStandardInput = true;
                 psi.WorkingDirectory = dir;
 
@@ -326,13 +325,12 @@ namespace SMWPatcher
                 var rom = Path.GetRelativePath(dir, Path.GetFullPath(Config.TempPath));
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.AddMusicKPath, $"\"{rom}\"");
+                ProcessStartInfo psi = Spawn(Config.AddMusicKPath, $"\"{rom}\"");
                 psi.RedirectStandardInput = true;
                 psi.WorkingDirectory = dir;
 
                 var p = Process.Start(psi);
-                while (!p.HasExited)
-                    p.StandardInput.Write('a');
+                p.WaitForExit();
 
                 if (p.ExitCode == 0)
                     Log("AddMusicK Success!", ConsoleColor.Green);
@@ -349,7 +347,7 @@ namespace SMWPatcher
             Log("Graphics", ConsoleColor.Cyan);
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                             $"-ImportAllGraphics \"{Config.TempPath}\"");
                 var p = Process.Start(psi);
                 p.WaitForExit();
@@ -380,7 +378,7 @@ namespace SMWPatcher
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                             $"-ImportAllMap16 \"{Config.TempPath}\" \"{Config.Map16Path}\"");
                 var p = Process.Start(psi);
                 p.WaitForExit();
@@ -403,7 +401,7 @@ namespace SMWPatcher
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                             $"-ImportTitleMoves \"{Config.TempPath}\" \"{Config.TitleMovesPath}\"");
                 var p = Process.Start(psi);
                 p.WaitForExit();
@@ -426,7 +424,7 @@ namespace SMWPatcher
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                             $"-ImportSharedPalette \"{Config.TempPath}\" \"{Config.SharedPalettePath}\"");
                 var p = Process.Start(psi);
                 p.WaitForExit();
@@ -462,7 +460,7 @@ namespace SMWPatcher
                     var fullCleanPath = Path.GetFullPath(Config.CleanPath);
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    psi = new ProcessStartInfo(Config.FlipsPath,
+                    psi = Spawn(Config.FlipsPath,
                             $"--apply \"{fullPatchPath}\" \"{fullCleanPath}\" \"{globalDataROMPath}\"");
                     p = Process.Start(psi);
                     p.WaitForExit();
@@ -479,7 +477,7 @@ namespace SMWPatcher
                 //Overworld
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    psi = Spawn(Config.LunarMagicPath,
                                 $"-TransferOverworld \"{Config.TempPath}\" \"{globalDataROMPath}\"");
                     p = Process.Start(psi);
                     p.WaitForExit();
@@ -496,7 +494,7 @@ namespace SMWPatcher
                 //Global EX Animations
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    psi = Spawn(Config.LunarMagicPath,
                                 $"-TransferLevelGlobalExAnim \"{Config.TempPath}\" \"{globalDataROMPath}\"");
                     p = Process.Start(psi);
                     p.WaitForExit();
@@ -513,7 +511,7 @@ namespace SMWPatcher
                 //Title Screen
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    psi = Spawn(Config.LunarMagicPath,
                                 $"-TransferTitleScreen \"{Config.TempPath}\" \"{globalDataROMPath}\"");
                     p = Process.Start(psi);
                     p.WaitForExit();
@@ -530,7 +528,7 @@ namespace SMWPatcher
                 //Credits
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    psi = Spawn(Config.LunarMagicPath,
                                 $"-TransferCredits \"{Config.TempPath}\" \"{globalDataROMPath}\"");
                     p = Process.Start(psi);
                     p.WaitForExit();
@@ -599,7 +597,7 @@ namespace SMWPatcher
                     Log($"Importing level {Config.TestLevel} to {Config.TestLevelDest} for testing...  ", ConsoleColor.Yellow);
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                         $"-ImportLevel \"{Config.OutputPath}\" \"{path}\" {Config.TestLevelDest}");
                     var p = Process.Start(psi);
                     p.WaitForExit();
@@ -623,7 +621,7 @@ namespace SMWPatcher
                 if (RetroArchProcess != null && !RetroArchProcess.HasExited)
                     RetroArchProcess.Kill(true);
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.RetroArchPath,
+                ProcessStartInfo psi = Spawn(Config.RetroArchPath,
                     $"-L \"{Config.RetroArchCore}\" \"{fullRom}\"");
                 RetroArchProcess = Process.Start(psi);
             }
@@ -648,7 +646,7 @@ namespace SMWPatcher
                 // import levels
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                    ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                                 $"-ImportMultLevels \"{romPath}\" \"{Config.LevelsPath}\"");
                     var p = Process.Start(psi);
                     p.WaitForExit();
@@ -681,7 +679,7 @@ namespace SMWPatcher
                 if (LunarMagicProcess != null && !LunarMagicProcess.HasExited)
                     LunarMagicProcess.Kill(true);
 
-                ProcessStartInfo psi = new ProcessStartInfo(Config.LunarMagicPath,
+                ProcessStartInfo psi = Spawn(Config.LunarMagicPath,
                             $"\"{Config.OutputPath}\"");
                 LunarMagicProcess = Process.Start(psi);
             }
@@ -753,7 +751,7 @@ namespace SMWPatcher
             Log($"Patching {cleanROM}\n\tto {outROM}\n\twith {patchBPS}", ConsoleColor.Yellow);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var psi = new ProcessStartInfo(Config.FlipsPath,
+            var psi = Spawn(Config.FlipsPath,
                     $"--apply \"{patchBPS}\" \"{cleanROM}\" \"{outROM}\"");
             var p = Process.Start(psi);
             p.WaitForExit();
@@ -769,7 +767,7 @@ namespace SMWPatcher
             Log($"Creating Patch {outputBPS}\n\twith {hackROM}\n\tover {cleanROM}", ConsoleColor.Yellow);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var psi = new ProcessStartInfo(Config.FlipsPath,
+            var psi = Spawn(Config.FlipsPath,
                     $"--create --bps-delta \"{cleanROM}\" \"{hackROM}\" \"{outputBPS}\"");
             var p = Process.Start(psi);
             p.WaitForExit();
@@ -796,6 +794,12 @@ namespace SMWPatcher
         {
             Console.ForegroundColor = color;
             Console.Write($"{msg}");
+        }
+
+        static private ProcessStartInfo Spawn(string program, string args)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo("wine", $"\"{program}\" {args}");
+            return psi;
         }
     }
 }
