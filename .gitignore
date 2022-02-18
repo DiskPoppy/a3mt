@@ -1,6 +1,6 @@
 *.smc
 *.smc~
-monitor/config_user.txt
+config_user.txt
 uberasm/asm/work/*.asm
 music/stats
 music/SPCs
@@ -10,3 +10,6 @@ music/SPCs
 lm331
 Flips
 resource/lunar-monitor-log.txt
+lunar-helper/bin
+lunar-helper/obj
+lunar-helper/.vscode
