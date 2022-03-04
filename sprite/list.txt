@@ -75,6 +75,7 @@
 52 ChasinRex.cfg
 56 barrel.cfg
 5A HammerBro2.json
+5B bouncy_floating.json
 
 C0 balloon_shooter.cfg
 C1 lasershooter.cfg
