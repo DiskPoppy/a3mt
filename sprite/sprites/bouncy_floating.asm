@@ -2,14 +2,13 @@
 ;;
 ;; SMW Floating Platforms (sprites 5B & 5C), by imamelia
 ;; Modified by Disk Poppy to make them bouncy.
+;; Uses parts of disassembly of springboard by RussianMan
 ;;
-;; This is a disassembly of sprites 5B and 5C in SMW, floating platforms.
+;; This is a modified disassembly of sprites 5B and 5C in SMW, floating platforms.
 ;;
-;; Uses first extra bit: YES
+;; Uses first extra bit: NO
 ;;
-;; If the extra bit is clear, this will act like sprite 5B, a wooden platform.  If the
-;; extra bit is set, this will act like sprite 5C, a checkerboard platform.  You must
-;; set sprite buoyancy on for these to work.
+;; You must set sprite buoyancy on for this to work.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -19,10 +18,24 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-!Tile = $00
-!BigBounceSpeed = $B0
-!SmallBounceSpeed = $D0
+!WaterRiseSpeed = -$20
+!BigBounceSpeed = -$7A
+!SmallBounceSpeed = -$50
 !BounceSFX = $08
+
+TileAnim:
+db $00,$02,$04
+
+FrameToShow:
+db $00,$01,$02,$02,$02,$01,$01,$00,$00
+
+;offset when player's on springboard for "sinking" animation
+MarioOnSpringOffset:
+db $1E,$1B,$18,$18,$18,$1A,$1C,$1D,$1E
+
+;used for "sinking" animation to displace tiles correctly
+AdditionalYDisp:
+db $00,$00,$03
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -85,7 +98,7 @@ BEQ NoDecYSpeed		; don't do some subsequent Y speed checks
 
 LDA !AA,x		; check the sprite's Y speed
 BPL DecYSpeed		; if positive, decrement it
-CMP #$F8			; also decrement it if it is negative
+CMP #!WaterRiseSpeed			; also decrement it if it is negative
 BCC NoDecYSpeed		; and no less than F8
 DecYSpeed:		;
 SEC			;
@@ -95,19 +108,51 @@ STA !AA,x		;
 NoDecYSpeed:
 
 STZ $185E|!Base2
-LDA $7D
-STA $00
-BMI NoContact		; branch if the player isn't on the sprite
 
-; removed sprite number check
+LDA !1540,x			;if animation timer isn't set
+BEQ Interaction			;don't do bouncing on it
 
-JSL $01A7DC|!bank	; check contact with player
-BCC NoContact
+OnIt:
+LSR				;calculate Y-displacement
+TAY				;
+LDA $187A|!Base2		;check if on yoshi
+CMP #$01			;Moderator changed this to LSR, but I restored it 'cause it offsets player on yoshi incorrectly while turning.
+LDA MarioOnSpringOffset,y	;
+BCC .NoADC			;
+ADC #$11			;add to displacement
 
-LDY #!BigBounceSpeed
-LDA $15
-BMI +			; if A or B held, skip
+.NoADC
+STA $00				;
+
+LDA FrameToShow,y		;those are frames for sprite to show
+STA !1602,x			;do small pressing and unpressing animation
+
+LDA !D8,x			;displace Mario vertically
+SEC : SBC $00			;
+STA $96				;
+
+LDA !14D4,x			;
+SBC #$00			;
+STA $97				;don't forget about high byte
+
+STZ $72				;Reset "in the air" flag, aka "kinda" on ground
+STZ $7B				;no X speed
+
+LDA #$02			;
+STA $1471|!Base2		;Mario stands on springboard
+
+LDA !1540,x			;check if it's time to make actual bounce
+CMP #$07			;
+BCS EndInteraction		;
+
+STZ $1471|!Base2		;Mario's not on springboard anymore
+
 LDY #!SmallBounceSpeed
+LDA $15
+BPL +			; if A or B held, skip
+LDA #$80			;set special RAM to make screen scroll vertically (if enabled to)
+STA $1406|!Base2		;
+LDY #!BigBounceSpeed
 +
 STY $7D			; bounce player
 
@@ -115,12 +160,28 @@ LDA #!BounceSFX
 STA $1DFC|!Base2
 
 INC $185E|!Base2		;
-LDA $00			; check the value from before
-LSR			;
-LSR			;
+LDA #$F8
 STA !AA,x		; set the Y speed *again* (surely Nintendo could have done this better)
+BRA EndInteraction
 
-NoContact:		;
+Interaction:
+JSL $01A7DC|!bank	; check contact with player
+BCC EndInteraction
+STZ !154C,x
+
+LDA !D8,x			;welp, it's a solid one
+SEC : SBC $96			;
+CLC : ADC #$04			;
+CMP #$1C			;check if touching from below
+BCC EndInteraction			;
+BPL .AlmostEnd			;or from above
+BRA EndInteraction
+
+.AlmostEnd
+LDA #$11			;make a small little bounce off it
+STA !1540,x
+
+EndInteraction:
 
 LDA $185E|!Base2		;
 CMP !151C,x		; not sure what the purpose of this is
@@ -147,7 +208,7 @@ STA !AA,x		;
 
 SkipYSpd2:		;
 
-LDA $13			;
+LDA $14			;
 AND #$01		;
 BNE SkipToGFX		; skip the next part every other frame
 
@@ -189,21 +250,24 @@ STA !14D4,x		;
 PLA			; All this just to make the sprite float?
 STA !D8,x		; Nintendo, you fail.
 
-SkipToGFX:		;
 
+SkipToGFX:		;
 LDA #$00
 %SubOffScreen()		; Whoa! Something that we actually semi-know what it does!
 
-; removed sprite check
-
-FloatingPlatformGFX:
+LDY !1602,x		;
+LDA AdditionalYDisp,y	;
+STA $0F
+LDA TileAnim,y
+STA $0E
 
 %GetDrawInfo()
 LDA $00
 STA $0300|!Base2,y		; set the tile X displacement
 LDA $01
+CLC : ADC $0F
 STA $0301|!Base2,y		; set the tile Y displacement
-LDA #!Tile
+LDA $0E
 STA $0302|!Base2,y
 LDA $64			; priority
 ORA !15F6,x		; no hardcoded palette
