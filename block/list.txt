@@ -4,13 +4,13 @@
 201:25 turnbig.asm
 202:25 turnfire.asm
 203:25 turncape.asm
-204:25 sprite_solid.asm
-205:25 mario_solid.asm
-206:25 shatter_mario.asm
-207:25 shatter_mario_sprite.asm
-208:25 shatter_sprite.asm
-209:25 shatter_fire.asm
-20A:25 shatter_cape.asm
+204:130 sprite_solid.asm
+205:130 mario_solid.asm
+206:130 shatter_mario.asm
+207:130 shatter_mario_sprite.asm
+208:130 shatter_sprite.asm
+209:130 shatter_fire.asm
+20A:130 shatter_cape.asm
 20B:25 removeitem.asm
 20C:25 teleport.asm
 20D:130 laser_left.asm
@@ -25,6 +25,14 @@
 220:25 MultiMidwayBlock1.asm
 221:25 MultiMidwayBlock2.asm
 222:100 donutblk.asm
+560:25 boostdown.asm
+561:25 boostup.asm
+DA0:130 sprite_solid.asm
+DA1:130 mario_solid.asm
+17A0:2 hurt.asm
+17A1:2 hurt.asm
+1840:25 SMB3Brick.asm
+
 
 ;;2-way pipe caps
 ;;;Vertical pipe caps
