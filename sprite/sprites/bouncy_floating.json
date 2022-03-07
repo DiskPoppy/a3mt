@@ -1,6 +1,6 @@
 {
   "$1656": {
-    "Object Clipping": 11,
+    "Object Clipping": 0,
     "Can be jumped on": false,
     "Dies when jumped on": false,
     "Hop in/kick shell": false,
@@ -13,11 +13,11 @@
   },
   "$166E": {
     "Use second graphics page": true,
-    "Palette": 0,
+    "Palette": 2,
     "Disable fireball killing": false,
     "Disable cape killing": true,
     "Disable water splash": true,
-    "Don't interact with Layer 2": true
+    "Don't interact with Layer 2": false
   },
   "$167A": {
     "Don't disable cliping when starkilled": false,
@@ -37,7 +37,7 @@
     "Don't change direction if touched": false,
     "Don't turn into coin when goal passed": true,
     "Spawn a new sprite": false,
-    "Don't interact with objects": true
+    "Don't interact with objects": false
   },
   "$190F": {
     "Make platform passable from below": false,

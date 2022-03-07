@@ -74,14 +74,11 @@ JMP SkipToGFX		; skip directly to the GFX routine
 
 NoSkip1:			;
 
-LDA !1588,x		; check the sprite's blocked status
-AND #$0C		; if the sprite is touching the ceiling or floor...
-BNE NoUpdateY		; don't update its Y position
-
-JSL $01801A|!bank		; update sprite Y position without gravity
-
-NoUpdateY:		;
-
+JSL $01801A|!bank	; update sprite Y position without gravity
+LDA !164A,x		; \  
+PHA			; | preserve and reset "sprite in liquid"
+STZ !164A,x		; /
+JSL $019138|!bank	; block contact
 STZ $1491|!Base2		; reset the "prevent sliding on a platform" flag
 
 ; removed sprite number check for the spike ball (CMP #$A4)
@@ -91,7 +88,7 @@ CMP #$40			; if it is greater than 40...
 BPL NoIncYSpeed		; don't increment it
 INC !AA,x		; if it is 40 or less, increment it
 NoIncYSpeed:		;
-LDA !164A,x		; if the sprite isn't in water or lava...
+PLA			; if the sprite isn't in water or lava...
 BEQ NoDecYSpeed		; don't do some subsequent Y speed checks
 
 ; another removed sprite number check
@@ -110,7 +107,7 @@ NoDecYSpeed:
 STZ $185E|!Base2
 
 LDA !1540,x			;if animation timer isn't set
-BEQ Interaction			;don't do bouncing on it
+BEQ NotOnIt			;don't do bouncing on it
 
 OnIt:
 LSR				;calculate Y-displacement
@@ -160,9 +157,14 @@ LDA #!BounceSFX
 STA $1DFC|!Base2
 
 INC $185E|!Base2		;
-LDA #$F8
+LDA #$08
 STA !AA,x		; set the Y speed *again* (surely Nintendo could have done this better)
 BRA EndInteraction
+
+
+NotOnIt:
+LDA $7D
+BMI EndInteraction
 
 Interaction:
 JSL $01A7DC|!bank	; check contact with player
