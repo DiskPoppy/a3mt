@@ -5,6 +5,7 @@ verbose: on
 
 ; Level list. Valid values: 000-1FF.
 level:
+002	cityofgulpgulp.asm
 009	disableflight.asm
 010	lvlfilter.asm
 015	lvlfilter.asm

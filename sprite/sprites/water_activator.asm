@@ -11,6 +11,8 @@ PHB
 PHK
 PLB
 
+LDA #$00
+%SubOffScreen()
 JSR Graphics
 
 LDA $9D
@@ -31,8 +33,12 @@ INC !sprite_misc_151c,x
 +
 .endUpdateAccel
 JSL $01801A|!bank  ;update y speed
-LDA #$00
-%SubOffScreen()
+JSL $01A7DC|!bank  ;check contact with the player
+BCC .return
+
+;if contact - write the value of Extension to free RAM
+LDA !extra_byte_1,x
+STA !waterTimer
 
 .return
 PLB

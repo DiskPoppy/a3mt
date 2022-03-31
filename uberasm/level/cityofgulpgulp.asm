@@ -9,7 +9,11 @@ LDA !waterTimer
 BEQ +
 LDA #$01
 STA $85  ;water level flag
+LDA $14
+AND #$03  ;only decrement the timer once per 4 frames
+BNE .dontdec
 DEC !waterTimer
+.dontdec
 RTL
 +
 STZ $85  ;water level flag
