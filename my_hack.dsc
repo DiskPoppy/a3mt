@@ -237,6 +237,11 @@
 561	0	A block that will boost the player upwards.
 da0	0	A block that will act like tile 25 for Mario
 da1	0	A block that will act like tile 25 for sprites
+e70	0	Kill the sprites when touching this block
+e71	0	Kill the sprites when touching this block
+ec0	0	Solid if anything goes left
 17a0	0	
 17a1	0	
 1840	0	A simple brick block.
+1d0e	0	weak_break_block.asm
+1d0f	0	A Donut Lift, which will fall shortly after being stepped on.

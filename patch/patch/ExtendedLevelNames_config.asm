@@ -98,17 +98,17 @@ NameData:
  db "  THE SANBO WOODS  "
  db "                   "
  ;Level 01C
- db "There too...       "
+ db "   DUCKMOUNTAIN    "
  db "                   "
  ;Level 01D
  db "Feel free to try   "
  db "glitches there     "
  ;Level 01E
- db "Actually... it was "
- db "reference          "
+ db "Aileron Moonbounce "
+ db "                   "
  ;Level 01F
- db "You have only 1F   "
- db "seconds!!!         "
+ db "    PREHISTORIC    "
+ db "    DOOM CASTLE    "
  ;Level 020
  db "#4 NOT ROY'S CASTLE"
  db "                   "
@@ -128,8 +128,8 @@ NameData:
  db "IGGY WAS THERE     "
  db "                   "
  ;Level 102
- db "Riverside Race     "
- db "(not much of race) "
+ db "Chrystal Caves     "
+ db "                   "
  ;Level 103
  db "James Turner (temp "
  db "name, may keep it) "
@@ -140,20 +140,20 @@ NameData:
  db "YOSHI'S ISLAND 1   "
  db "                   "
  ;Level 106
- db "KIRBY'S ISLAND 2   "
+ db "  Horse Adventure  "
  db "                   "
  ;Level 107
- db "Ghost House        "
- db "                   "
+ db "This Cave is       "
+ db "no Ghost House!    "
  ;Level 108
- db "STAR ROAD          "
- db "                   "
+ db "   The Castle      "
+ db "      of Spirits   "
  ;Level 109
  db "Rare vertical      "
  db "design             "
  ;Level 10A
- db "Lavaside Race      "
- db "(not much of race) "
+ db "Lucifer's Lava Lamp"
+ db "                   "
  ;Level 10B
  db "Is it done yet?    "
  db "                   "
@@ -176,7 +176,7 @@ NameData:
  db "Fortress of 1      "
  db "FAST SMASH ACTION!!"
  ;Level 112
- db "#4 STAR ROAD       "
+ db "Good Ol' Days      "
  db "                   "
  ;Level 113
  db "Rather generic     "
@@ -215,8 +215,8 @@ NameData:
  db "DO WIGGLER GLITCH  "
  db "(or fix it)        "
  ;Level 11F
- db "I have no idea of  "
- db "what random..?     "
+ db "  A Warm Welcome   "
+ db "                   "
  ;Level 120
  db "Expect HURRY UP    "
  db "sound there        "
@@ -227,7 +227,7 @@ NameData:
  db "This BG gives me   "
  db "DEJA VU?           "
  ;Level 123
- db "Bob-omb Battlefield"
+ db " Coasting Redwoods "
  db "                   "
  ;Level 124
  db "Welcome to new     "
@@ -284,19 +284,19 @@ NameData:
  db "Generic STAR ROAD  "
  db "Level              "
  ;Level 136
- db "There is secret    "
- db "world at exit      "
+ db "Who put Touhou     "
+ db "in my hack??       "
  ;Level 137
  db "STAR ROAD          "
  db "                   "
  ;Level 138
- db "TO BOWSER          "
- db "              THERE"
+ db "Weird Teal House   "
+ db "                   "
  ;Level 139
  db "                   "
  db "                   "
  ;Level 13A
- db "                   "
+ db "Use Of A Goal Posts"
  db "                   "
  ;Level 13B
  db "                   "

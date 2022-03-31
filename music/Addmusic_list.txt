@@ -50,7 +50,22 @@ Locals:
 33  Still, the Road is Full of Dangers.txt
 35  Donkey_Kong_Country_2_-_Stickerbush_Symphony.txt
 36  another mansion theme.txt
+37  Monster Boy and the Cursed Kingdom - Crystal Cave.txt
 38  cog is push.txt
 39  mustnotlose.txt
 3A  Stilt Village.txt
+3D  Return Of The Gohei.txt
 3E  remixhills.txt
+3F  At DooM's Gate.txt
+40  snp_arle_a1_0_2.txt
+41  DejaVu.txt
+42  Fortuna.txt
+43  Busy Flare.txt
+44  Ghost Trick - Suspicion (optimized).txt
+46  Tengu Rush Hour.txt
+47  Treetop Tumble.txt
+48  Rusty Ruins Zone Act 2.txt
+4B  Zombies Ate My Neighbours - Level 2.txt
+4C  CUSTOM - Badlands.txt
+4D  Homestuck - 'Showtime'.txt
+55  upanddown.txt
