@@ -190,3 +190,5 @@
 6A 0022 0,0,0
 6A 0030 A cluster bullet sprite shooter with lots of customization options. A summary of each extra byte is included here, but check the asm file for more detailed descriptions and examples.\nExtra Bit: Aim at player if set. Set now.\nExtra Byte 1: Reserved for future expansion.\nExtra Byte 2: Rate at which bullets are shot.\nExtra Byte 3: Speed at which bullets are shot.\nExtra Byte 4: Angle of shot (irrelevant if aiming).\nExtra Byte 5: Offset from global timer.\nExtra Byte 6: Parameter, ASM file has details.\nExtra Byte 7: Time for bullet to stay on screen.\nExtra Byte 8: How many bullets can be shot.\nExtra Byte 9: Sprite number to attach to.\nExtra Byte 10: Y/X offset from host sprite.\nExtra Byte 11: Reserved for future expansion.\nExtra Byte 12: Reserved for future expansion.
 6A 0032 0,0,0
+86 0020 Undefined Sprite
+86 0022 0,0,0

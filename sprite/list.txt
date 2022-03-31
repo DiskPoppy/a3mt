@@ -92,6 +92,7 @@
 69 venus_grindthrow.cfg
 6A shooter.json
 70 SeaPokey.cfg
+86 water_activator.json
 
 C0 balloon_shooter.cfg
 C1 lasershooter.cfg
