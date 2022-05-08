@@ -1,4 +1,4 @@
-!waterTimer = $13E6|!addr  ;free RAM, must be shared with the water activator sprite
+!waterTimer = $1864|!addr  ;free RAM, must be shared with the water activator sprite
 
 ;init:
 ;STZ !waterTimer  ;only in case you change free RAM to one not reset on level load

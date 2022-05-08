@@ -1,16 +1,23 @@
 !Tile = $00
 
-!waterTimer = $13E6|!addr  ;free RAM, must be shared with the uberasm for the levels that use it
+!waterTimer = $1864|!addr  ;free RAM, must be shared with the uberasm for the levels that use it
 
 
 print "INIT ", pc
 RTL
 
 print "MAIN ", pc
+LDA !sprite_misc_154c,x
+BNE ReturnLong
 PHB
 PHK
 PLB
+JSR MainCode
+PLB
+ReturnLong:
+RTL
 
+MainCode:
 LDA #$00
 %SubOffScreen()
 JSR Graphics
@@ -39,15 +46,17 @@ BCC .return
 ;if contact - write the value of Extension to free RAM
 LDA !extra_byte_1,x
 STA !waterTimer
+;hide sprite
+LDA #$20
+STA !sprite_misc_154c,x
 
 .return
-PLB
-RTL
+RTS
 
 Accel:
 db $FF,$01
 MaxSpeed:
-db $F0,$10
+db $F8,$08
 
 Graphics:
 %GetDrawInfo()
