@@ -93,4 +93,19 @@
 64	Firefly
 6A	Cluster Bullet Shooter (Angle)
 	Cluster Bullet Shooter (Aim)
+71	Reverse Donut
+72	Bouncing Spiny Egg
+74	Blue POW/P-switch
+	Silver POW/P-switch
+75	X Follow Sprite
+	Y Follow Sprite
+77	Cluster Flower Spawner
+79	Green Koopa
+	Green Shell (stationary)
+	Green Shell (stationary, Koopa inside)
+	Green Shell (kicked)
+	Disco Shell
+85	Kun (Walks Back and Forth)
+	Kun (Wall Following, Slow)
+	Kun (Wall Following, Fast)
 86	Water Activator

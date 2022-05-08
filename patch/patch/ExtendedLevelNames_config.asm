@@ -149,8 +149,8 @@ NameData:
  db "   The Castle      "
  db "      of Spirits   "
  ;Level 109
- db "Rare vertical      "
- db "design             "
+ db " A Nighttime Hike  "
+ db "   Up the Mountain "
  ;Level 10A
  db "Lucifer's Lava Lamp"
  db "                   "
@@ -170,8 +170,8 @@ NameData:
  db "DON'T take Yoshi   "
  db "for secret exit... "
  ;Level 110
- db "Complex block path "
- db "(fly over it)      "
+ db "My Green Garden    "
+ db "in Green Forest    "
  ;Level 111
  db "Fortress of 1      "
  db "FAST SMASH ACTION!!"
@@ -179,8 +179,8 @@ NameData:
  db "Good Ol' Days      "
  db "                   "
  ;Level 113
- db "Rather generic     "
- db "level              "
+ db "   Quirky Quarry   "
+ db "                   "
  ;Level 114
  db "Ghost House with   "
  db "secret exit (key)  "
@@ -197,8 +197,8 @@ NameData:
  db "Riverside water    "
  db "...?               "
  ;Level 119
- db "BULLET HELL (not   "
- db "much of Touhou)    "
+ db "  Jumpers Are      "
+ db "  All Winners!     "
  ;Level 11A
  db "Complex turn block "
  db "maze - easy!       "

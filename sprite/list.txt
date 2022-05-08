@@ -91,7 +91,20 @@
 68 ngrinder.cfg
 69 venus_grindthrow.cfg
 6A shooter.json
+6C venus_ninjithrow.cfg
+6D Wiggler_86_4.cfg
 70 SeaPokey.cfg
+71 reverse_donut.json
+72 bouncing_spiny_egg.json
+73 Flyin_Disco_Shell.cfg
+74 POW_dis.json
+75 XYFollowSprite.json
+76 RotatingVine.cfg
+77 flowerspawn.json
+79 Disco_shell.json
+7A chasing_ninji.cfg
+7C shy_bird.cfg
+85 Kun.json
 86 water_activator.json
 
 C0 balloon_shooter.cfg
@@ -108,6 +121,7 @@ CLUSTER:
 00 cluster_sparkle.asm
 01 laser.asm
 10 bullet.asm
+11 flowers.asm
 
 EXTENDED:
 00 boomerang.asm
