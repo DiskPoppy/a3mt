@@ -5,7 +5,7 @@
 #optimized
 "DKC2/dkc2-16.brr"
 "DooMooD/Sans Undertale.brr"
-"C-R-E-A-T-E-!/Star Fox Synth Brass.brr"
+"Treetop Tumble/Flute.brr"
 "C-R-E-A-T-E-!/FF6 Synth Bass.brr"
 }
 
@@ -13,7 +13,7 @@
 {
 "DooMooD/Sans Undertale.brr" $85 $25 $00 $06 $10 ;@30 
 "DKC2/dkc2-16.brr" $8f $fa $00 $02 $ff ;@31 marimba
-"C-R-E-A-T-E-!/Star Fox Synth Brass.brr" $AE $AA $B8 $03 $00
+"Treetop Tumble/Flute.brr" $FA $E0 $FF $03 $DB ;@32
 "DKC2/dkc2-16.brr" $cf $f0 $00 $02 $ff ;@33 bass marimba
 "C-R-E-A-T-E-!/FF6 Synth Bass.brr" $FF $E2 $B8 $09 $00 ;@34
 }
