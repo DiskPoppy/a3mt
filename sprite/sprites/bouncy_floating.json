@@ -13,19 +13,19 @@
   },
   "$166E": {
     "Use second graphics page": true,
-    "Palette": 3,
+    "Palette": 2,
     "Disable fireball killing": false,
     "Disable cape killing": true,
-    "Disable water splash": false,
+    "Disable water splash": true,
     "Don't interact with Layer 2": false
   },
   "$167A": {
     "Don't disable cliping when starkilled": false,
     "Invincible to star/cape/fire/bounce blk.": true,
     "Process when off screen": false,
-    "Don't change into shell when stunned": true,
-    "Can't be kicked like shell": true,
-    "Process interaction with Mario every frame": false,
+    "Don't change into shell when stunned": false,
+    "Can't be kicked like shell": false,
+    "Process interaction with Mario every frame": true,
     "Gives power-up when eaten by yoshi": false,
     "Don't use default interaction with Mario": true
   },
@@ -42,25 +42,25 @@
   "$190F": {
     "Make platform passable from below": false,
     "Don't erase when goal passed": false,
-    "Can't be killed by sliding": false,
+    "Can't be killed by sliding": true,
     "Takes 5 fireballs to kill": false,
     "Can be jumped on with upwards Y speed": false,
-    "Death frame two tiles high": false,
+    "Death frame two tiles high": true,
     "Don't turn into a coin with silver POW": true,
     "Don't get stuck in walls (carryable sprites)": false
   },
-  "AsmFile": "water_activator.asm",
-  "ActLike": 125,
+  "AsmFile": "bouncy_floating.asm",
+  "ActLike": 54,
   "Type": 1,
   "Extra Property Byte 1": 0,
   "Extra Property Byte 2": 0,
-  "Additional Byte Count (extra bit clear)": 1,
-  "Additional Byte Count (extra bit set)": 1,
+  "Additional Byte Count (extra bit clear)": 0,
+  "Additional Byte Count (extra bit set)": 0,
   "Map16": "",
   "Displays": [
     {
-      "Description": "Undefined Sprite",
-      "ExtraBit": false,
+      "Description": "A rubber duck that functions like a springboard. Floats in water if sprite buoyancy is enabled and cannot be held.",
+      "ExtraBit": true,
       "Tiles": [
         {
           "X offset": 0,
@@ -76,7 +76,7 @@
   ],
   "Collection": [
     {
-      "Name": "Water Activator",
+      "Name": "Bouncy Floating",
       "ExtraBit": false,
       "Extra Property Byte 1": 0,
       "Extra Property Byte 2": 0,

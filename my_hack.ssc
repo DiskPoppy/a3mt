@@ -166,6 +166,8 @@
 50 0032 0,0,0
 51 0020 Undefined Sprite
 51 0022 0,0,0
+58 0030 A rubber duck that functions like a springboard. Floats in water if sprite buoyancy is enabled and cannot be held.
+58 0032 0,0,0
 59 0020 Undefined Sprite
 59 0022 0,0,0
 5A 0020 A Hammer Bro from Super Mario Bros. 3. It walks back and forth and sometimes jumps high between blocks. It frequently throws hammers in Mario's direction.
