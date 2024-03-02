@@ -1,0 +1,2 @@
+Locals:
+59  sc.txt
